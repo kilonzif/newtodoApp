@@ -1,0 +1,19 @@
+<div class="row align-content-center">
+    <!-- <h2>Add to List</h2> -->
+    <form [formGroup]="newTodoForm" (ngSubmit)="addTask()">
+        <input type="text" placeholder="Task to do" class="formcontrol" 
+          formControlName="itemName"  required>
+        <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+
+</div>
+
+
+
+<div class="todolist" *ngFor="let todo of taskList; index as index"> 
+    <div class="todo-item">
+        <p [ngClass]="{'markDone': todo.completed===true}">{{todo.name}}</p>  
+        <button class="button" style="color:green" (click)="markAsDone(todo)">Done</button>  
+        <button class="button" style="color:red" (click)="deleteTask(index)">Delete</button> 
+    </div>
+</div>

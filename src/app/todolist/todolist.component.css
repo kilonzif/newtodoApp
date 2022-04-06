@@ -1,0 +1,12 @@
+
+
+.todo-item{
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+    
+.markDone {
+    text-decoration: line-through;
+}
