@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+//import Tasks Class from TaskLists
+
+import  { Tasks } from '../data/TaskList';
+
+
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -7,7 +12,16 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './todolist.component.html',
   styleUrls: ['./todolist.component.css']
 })
+
 export class TodolistComponent implements OnInit {
+
+  //instance of class
+  taskItems:Tasks[]=[
+    new Tasks(1,'Attend morning standup',true),
+    new Tasks(2,'Attend evening checkout',false),
+  ];
+
+
 
   taskList:any[]=[]
   newTodoForm  = this.formBuilder.group({
@@ -55,6 +69,20 @@ export class TodolistComponent implements OnInit {
           this.taskList.unshift(this.taskList.splice(this.taskList.indexOf(todo), 1)[0])
     console.log(todo);
   }
+
+
+  /** Using Classes */
+
+  addTaskItem (){
+    let newItem =this.newTodoForm.value.itemName
+    this.taskItems.push(new Tasks(3,newItem,false) );
+    console.log(this.taskItems);
+    this.newTodoForm.reset();
+
+  }
+
+
+
 
 
 }

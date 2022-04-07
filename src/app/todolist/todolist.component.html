@@ -1,11 +1,9 @@
 <div class="row align-content-center">
-    <!-- <h2>Add to List</h2> -->
-    <form [formGroup]="newTodoForm" (ngSubmit)="addTask()">
-        <input type="text" placeholder="Task to do" class="formcontrol" 
+    <form [formGroup]="newTodoForm" (ngSubmit)="addTaskItem()">
+        <input type="text" placeholder="Task to do" class="form-control" 
           formControlName="itemName"  required>
         <button type="submit" class="btn btn-primary">Add Task</button>
     </form>
-
 </div>
 
 
@@ -16,4 +14,9 @@
         <button class="button" style="color:green" (click)="markAsDone(todo)">Done</button>  
         <button class="button" style="color:red" (click)="deleteTask(index)">Delete</button> 
     </div>
+</div>
+
+
+<div class="row" *ngFor=" let item of taskItems">
+    <li>{{item.name}}</li>
 </div>
