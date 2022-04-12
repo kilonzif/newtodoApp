@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+// import Alert service
+import { AlertService } from '../alert-service/alert.service';
+
+
+
 //import Tasks Class from TaskLists
+
 
 import  { Tasks } from '../data/TaskList';
 
@@ -21,16 +27,17 @@ export class TodolistComponent implements OnInit {
     new Tasks(2,'Attend evening checkout',false),
   ];
 
+  taskList:any[]=[];
 
 
-  taskList:any[]=[]
+
   newTodoForm  = this.formBuilder.group({
     itemName:''
   })
 
 
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder, private alertService:AlertService
   ) { }
  
 
@@ -56,7 +63,9 @@ export class TodolistComponent implements OnInit {
 
 
   deleteTask(index:any){
+    this.alertService.alertMe("The Todo Item has been deleted");
     this.taskList.splice(index,1);
+
   }
 
   
@@ -77,8 +86,8 @@ export class TodolistComponent implements OnInit {
     let newItem =this.newTodoForm.value.itemName
     this.taskItems.push(new Tasks(3,newItem,false) );
     console.log(this.taskItems);
+    
     this.newTodoForm.reset();
-
   }
 
 

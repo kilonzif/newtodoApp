@@ -1,14 +1,18 @@
 <div class="row align-content-center">
-    <form [formGroup]="newTodoForm" (ngSubmit)="addTaskItem()">
-        <input type="text" placeholder="Task to do" class="form-control" 
-          formControlName="itemName"  required>
-        <button type="submit" class="btn btn-primary">Add Task</button>
+    <form [formGroup]="newTodoForm" (ngSubmit)="addTaskItem()" class="form-inline">
+        <div class="col-md-6">
+            <input type="text" placeholder="Task to do" class="form-control" 
+            formControlName="itemName"  required>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>     
+       
     </form>
 </div>
 
-
-
-<div class="todolist" *ngFor="let todo of taskList; index as index"> 
+<!-- array -->
+<div class="todolist" *ngFor="let todo of taskItems; index as index"> 
     <div class="todo-item">
         <p [ngClass]="{'markDone': todo.completed===true}">{{todo.name}}</p>  
         <button class="button" style="color:green" (click)="markAsDone(todo)">Done</button>  
@@ -17,6 +21,6 @@
 </div>
 
 
-<div class="row" *ngFor=" let item of taskItems">
+<!-- <div class="row" *ngFor=" let item of taskItems">
     <li>{{item.name}}</li>
-</div>
+</div> -->
