@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Quote } from '../quote-class/quote'
 
 // import Alert service
 import { AlertService } from '../alert-service/alert.service';
@@ -28,6 +30,7 @@ export class TodolistComponent implements OnInit {
   ];
 
   taskList:any[]=[];
+  quote!:Quote;
 
 
 
@@ -37,13 +40,30 @@ export class TodolistComponent implements OnInit {
 
 
   constructor(
-    private formBuilder:FormBuilder, private alertService:AlertService
-  ) { }
+    private formBuilder:FormBuilder, private alertService:AlertService, private http:HttpClient
+  ) { 
+
+  }
  
 
  
 
   ngOnInit(): void {
+      interface ApiResponse{
+        author:string;
+        quote:string;
+        id:number;
+        permalink:string;
+      
+      }     
+  
+      this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
+        // Succesful API request
+        this.quote = new Quote(data.author, data.quote, data.id,data.permalink)
+      },err=>{
+          this.quote = new Quote("Winston Churchill","Never never give up!",0,"")
+          console.log("An error occurred")    
+      })     
 
   }
   

@@ -12,15 +12,28 @@
 </div>
 
 <!-- array -->
-<div class="todolist" *ngFor="let todo of taskItems; index as index"> 
+<!-- <div class="todolist" *ngFor="let todo of taskItems; index as index"> 
     <div class="todo-item">
         <p [ngClass]="{'markDone': todo.completed===true}">{{todo.name}}</p>  
         <button class="button" style="color:green" (click)="markAsDone(todo)">Done</button>  
         <button class="button" style="color:red" (click)="deleteTask(index)">Delete</button> 
     </div>
-</div>
+</div> -->
 
 
 <!-- <div class="row" *ngFor=" let item of taskItems">
     <li>{{item.name}}</li>
 </div> -->
+
+<div class="container">
+    <ng-progress></ng-progress>
+    <h2> Quotes</h2>
+  <div class="row">
+    <blockquote class="blockquote text-center">
+      <p class="mb-0"> {{quote.id}} - {{quote.quote}}</p>
+      <br>
+      <small>{{ quote.permalink}}</small><br>
+      <footer class="blockquote-footer"><cite>{{quote.author}}</cite></footer>
+    </blockquote>
+  </div>
+</div>
